@@ -3,7 +3,7 @@
 
 <p style="color: blue;">Mi Estilo es una base de datos de mercado diseñada para gestionar y almacenar datos para un mercado en línea. Incluye tablas para usuarios, productos, transacciones, categorías, vendedores, compradores, pagos y notificaciones.</p>
 
-<a href="https://docs.google.com/presentation/d/1A4w6zJDALP99Ns_Tt5ajXQma2bR66hzBL00mq4Hyw_s/edit#slide=id.p" target="_blank" rel="noopener">Ver presentación aquí</a>
+<a href="https://docs.google.com/presentation/d/1A4w6zJDALP99Ns_Tt5ajXQma2bR66hzBL00mq4Hyw_s/edit#slide=id.p" target="_blank">Ver presentación aquí</a>
 
 
 <h2 style="color: blue;">Características</h2>

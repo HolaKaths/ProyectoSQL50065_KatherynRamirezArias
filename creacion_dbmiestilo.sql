@@ -1,57 +1,45 @@
-Table "users" {
-  "id" INTEGER [pk, increment]
-  "name" VARCHAR(255) [unique, not null]
-  "email" VARCHAR(255) [not null]
-  "password" VARCHAR(255) [not null]
-  "gender" VARCHAR(255) [not null]
-  "age" INT [not null]
-  "interests" VARCHAR(255) [not null]
-  "created_at" DATETIME [not null, default: `CURRENT_TIMESTAMP`]
-}
 
-Table "products" {
-  "id" INTEGER [pk, increment]
-  "name" VARCHAR(255) [not null]
-  "category" VARCHAR(255) [not null]
-  "description" VARCHAR(255) [not null]
-  "price" DECIMAL [not null]
-  "image_url" VARCHAR(255) [not null]
-   "created_at" DATETIME [not null, default: `CURRENT_TIMESTAMP`]
-}
 
 Table "categories" {
-  "id" INTEGER [pk, increment]
+  "id" INT [pk, not null, increment]
   "name" VARCHAR(255) [not null]
 }
 
 Table "sellers" {
-  "id" INTEGER [pk, increment]
-  "name" VARCHAR(255) [not null]
+  "id" INT [pk, not null, increment]
+  "username" VARCHAR(255) [not null]
   "email" VARCHAR(255) [not null]
   "password" VARCHAR(255) [not null]
-  "category" VARCHAR(255) [not null]
+  "category_id" INT [not null]
 }
 
 Table "buyers" {
-  "id" INTEGER [pk, increment]
-  "name" VARCHAR(255) [not null]
+  "id" INT [pk, not null, increment]
+  "username" VARCHAR(255) [not null]
   "email" VARCHAR(255) [not null]
   "password" VARCHAR(255) [not null]
 }
 
 Table "transactions" {
-  "id" INTEGER [pk, increment]
+  "id" INT [pk, not null, increment]
   "date" DATE [not null]
-  "seller_id" INTEGER [not null]
-  "buyer_id" INTEGER [not null]
-  "product_id" INTEGER [not null]
+  "seller_id" INT [not null]
+  "buyer_id" INT [not null]
+  "product_id" INT [not null]
   "payment_method" VARCHAR(255) [not null]
- }
+}
+
+Table "product_transactions" {
+  "id" INT [pk, not null, increment]
+  "product_id" INT [not null]
+  "transaction_id" INT [not null]
+}
 
 Table "payment_methods" {
-  "id" INTEGER [pk, increment]
-  "name" VARCHAR(255) [not null]
+  "name" VARCHAR(255) [pk, not null]
 }
+
+
 
 Ref:"categories"."id" < "products"."category"
 

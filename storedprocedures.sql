@@ -5,7 +5,8 @@ CREATE PROCEDURE get_total_transactions(
   IN table_name VARCHAR(255) = 'transactions',
   -- Define el parámetro `order_type`
   IN order_type VARCHAR(255)
-)
+); 
+
 BEGIN
 
   -- Declara variables
@@ -38,3 +39,22 @@ BEGIN
   DROP TABLE temp_results;
 
 END;
+
+-- Inserta un registro en la tabla `products`: un nuevo webinar o curso para Mi Estilo.
+CREATE PROCEDURE insert_product(
+IN product_name VARCHAR(255),
+IN product_price DECIMAL(10,2),
+IN product_description VARCHAR(255)
+)
+BEGIN
+--  Inserta un registro en la tabla `products`
+
+-- Inserta el registro
+INSERT INTO products (product_name, product_price, product_description)
+VALUES (product_name, product_price, product_description);
+
+-- Devuelve el resultado
+SELECT 1 AS success;
+END;
+
+CALL insert_product('Nuevo webinar Mi Estilo- asesoría de moda', 10.00, 'Descripción del curso');

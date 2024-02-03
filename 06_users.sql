@@ -7,8 +7,9 @@ GRANT ALL PRIVILEGES ON mi_estilo.* TO 'AdminMiEstilo'@'localhost';
 -- Moderador ME
 CREATE USER 'ModMiEstilo'@'localhost' IDENTIFIED BY 'password_pruebamod';
 
--- Recibe: permisos de lectura, inserción y modificación en todas las tablas. No tendrá permisos de eliminación.
-GRANT SELECT, INSERT, UPDATE ON mi_estilo.* TO 'ModMiEstilo'@'localhost';
+-- Recibe: permisos de lectura, inserción y modificación en algunas las tablas. No tendrá permisos de eliminación.
+GRANT SELECT, INSERT, UPDATE ON mi_estilo.users, mi_estilo.products, mi_estilo.categories TO 'ModMiEstilo'@'localhost';
+
 
 
 -- Analista ME

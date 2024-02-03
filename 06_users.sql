@@ -17,3 +17,5 @@ CREATE USER 'AnalystME'@'localhost' IDENTIFIED BY 'password_pruebaame';
 -- Recibe permisos de lectura en todas las tablas. No tendrá permisos de inserción, modificación ni eliminación
 GRANT SELECT ON mi_estilo.* TO 'AnalystME'@'localhost';
 
+
+REVOKE DELETE ON *.* FROM 'ModMiEstilo'@'localhost';

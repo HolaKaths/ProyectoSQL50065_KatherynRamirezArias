@@ -1,6 +1,8 @@
-Table Users
-CREATE TABLE users (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE DATABASE IF NOT EXISTS db_miestilo;
+USE db_miestilo;
+
+CREATE TABLE IF NOT EXISTS users 
+(id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -10,10 +12,10 @@ CREATE TABLE users (
   created_at DATETIME NOT NULL,
   updated_at DATETIME NOT NULL,
   PRIMARY KEY (id)
-);
+  ) ENGINE = InnoDB
+;
 
-Table Products
-CREATE TABLE product (
+CREATE TABLE IF NOT EXISTS products (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
@@ -25,50 +27,44 @@ CREATE TABLE product (
   FOREIGN KEY (seller_id) REFERENCES users (id)
 );
 
+CREATE TABLE IF NOT EXISTS categories (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
 
-Table "categories" {
-  "id" INT [pk, not null, increment]
-  "name" VARCHAR(255) [not null]
-}
+CREATE TABLE IF NOT EXISTS sellers (
+id INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
 
-Table "sellers" {
-  "id" INT [pk, not null, increment]
-  "username" VARCHAR(255) [not null]
-  "email" VARCHAR(255) [not null]
-  "password" VARCHAR(255) [not null]
-  "category_id" INT [not null]
-}
+CREATE TABLE IF NOT EXISTS buyers (
+  id INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
 
-Table "buyers" {
-  "id" INT [pk, not null, increment]
-  "username" VARCHAR(255) [not null]
-  "email" VARCHAR(255) [not null]
-  "password" VARCHAR(255) [not null]
-}
+CREATE TABLE IF NOT EXISTS transactions (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  seller_id INT NOT NULL,
+  buyer_id INT NOT NULL,
+  product_id INT NOT NULL,
+  payment_method VARCHAR(255) NOT NULL
+);
 
-Table "transactions" {
-  "id" INT [pk, not null, increment]
-  "date" DATE [not null]
-  "seller_id" INT [not null]
-  "buyer_id" INT [not null]
-  "product_id" INT [not null]
-  "payment_method" VARCHAR(255) [not null]
-}
+CREATE TABLE IF NOT EXISTS product_transactions (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_id INT NOT NULL,
+  transaction_id INT NOT NULL
+);
 
-Table "product_transactions" {
-  "id" INT [pk, not null, increment]
-  "product_id" INT [not null]
-  "transaction_id" INT [not null]
-}
+CREATE TABLE IF NOT EXISTS payment_methods (
+  name VARCHAR(255) NOT NULL
+);
 
-Table "payment_methods" {
-  "name" VARCHAR(255) [pk, not null]
-}
-
-
-
-Ref:"categories"."id" < "products"."category"
-
-Ref:"sellers"."id" < "transactions"."seller_id"
-
-Ref:"buyers"."id" < "transactions"."buyer_id"
